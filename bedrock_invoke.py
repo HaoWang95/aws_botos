@@ -20,11 +20,6 @@ amazon_titan_vite_map = {
 bedrock_client = boto3.client("bedrock")
 bedrock_runtime = boto3.client("bedrock-runtime")
 
-response = bedrock_client.list_foundation_models()
-
-titan_lite_model = bedrock_client.get_foundation_model(
-    modelIdentifier=amazon_titan_vite
-)
 
 prompt_data = """
 Question: write comment for the code below:
@@ -101,7 +96,7 @@ anthropic_claude2_request_body = json.dumps(
 
 
 def call_model(bedrock_runtime, body, modelId, accept, contentType):
-    print(f"Calling model {modelId}")
+    print(f"Calling model {modelId}       " + "*"*100)
     try:
         response = bedrock_runtime.invoke_model(
             body=body, modelId=modelId, accept=accept, contentType=contentType
@@ -109,6 +104,7 @@ def call_model(bedrock_runtime, body, modelId, accept, contentType):
         process_model_response(response=response, modelId=modelId)
     except botocore.exceptions.ClientError as err:
         print(err)
+    print(f"Model call {modelId} finished " + "*"*100)
 
 
 def process_model_response(response, modelId):
