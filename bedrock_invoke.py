@@ -101,7 +101,7 @@ anthropic_claude2_request_body = json.dumps(
 
 
 def call_model(bedrock_runtime, body, modelId, accept, contentType):
-    print(f"Calling model {modelId}" + "*" * 100)
+    print(f"Calling model {modelId}")
     try:
         response = bedrock_runtime.invoke_model(
             body=body, modelId=modelId, accept=accept, contentType=contentType
