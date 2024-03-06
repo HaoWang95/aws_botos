@@ -20,6 +20,9 @@ amazon_titan_vite_map = {
 bedrock_client = boto3.client("bedrock")
 bedrock_runtime = boto3.client("bedrock-runtime")
 
+request_label_duplicate_code = "Label the duplicate code snippet that should be removed:"
+request_label_comment_code = "Write code comment for the snippet below:"
+
 
 prompt_data = """
 Question: write comment for the code below:
@@ -32,7 +35,7 @@ Answer:
 """
 
 react_prompt_data = """
-Label the duplicate code snippet that should be removed:
+Write code comment for the snippet below:
 
 ```TypeScript
 import { PayloadAction, createSelector, createSlice } from "@reduxjs/toolkit";
